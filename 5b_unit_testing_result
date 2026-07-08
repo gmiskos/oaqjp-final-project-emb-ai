@@ -1,0 +1,9 @@
+Command run:
+/Users/A200160346/Documents/python/oaqjp-final-project-emb-ai/.venv/bin/python test_emotion_detection.py
+
+Output:
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK

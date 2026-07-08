@@ -1,0 +1,20 @@
+Command run:
+cd /Users/A200160346/Documents/python/oaqjp-final-project-emb-ai && /Users/A200160346/Documents/python/oaqjp-final-project-emb-ai/.venv/bin/python - <<'PY'
+from unittest.mock import patch
+from final_project.emotion_detection import emotion_detector
+
+class MockResponse:
+    status_code = 200
+    text = '{"emotionPredictions":[{"emotion":{"anger":0.01,"disgust":0.02,"fear":0.03,"joy":0.91,"sadness":0.03}}]}'
+
+print('IMPORT_OK')
+with patch('final_project.emotion_detection.requests.post', return_value=MockResponse()):
+    result = emotion_detector('I love this new technology.')
+    print('TEST_OK')
+    print(result)
+PY
+
+Output:
+IMPORT_OK
+TEST_OK
+{'anger': 0.01, 'disgust': 0.02, 'fear': 0.03, 'joy': 0.91, 'sadness': 0.03, 'dominant_emotion': 'joy'}

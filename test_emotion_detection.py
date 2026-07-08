@@ -7,6 +7,7 @@ from EmotionDetection import emotion_detector
 
 class MockResponse:
     def __init__(self, payload_text):
+        self.status_code = 200
         self.text = payload_text
 
 

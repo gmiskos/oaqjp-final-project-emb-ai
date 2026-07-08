@@ -1,10 +1,17 @@
 """Flask server for Emotion Detection web deployment."""
 
+from pathlib import Path
+
 from flask import Flask, render_template, request
 
 from EmotionDetection import emotion_detector
 
-app = Flask("Emotion Detection", template_folder="../templates", static_folder="../static")
+BASE_DIR = Path(__file__).resolve().parent.parent
+app = Flask(
+    __name__,
+    template_folder=str(BASE_DIR / "templates"),
+    static_folder=str(BASE_DIR / "static"),
+)
 
 
 @app.route("/")

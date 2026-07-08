@@ -1,12 +1,6 @@
-from pathlib import Path
-import sys
+"""Flask server for Emotion Detection web deployment."""
 
 from flask import Flask, render_template, request
-
-# Allow running this file directly via `python final_project/server.py`.
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
 
 from EmotionDetection import emotion_detector
 
@@ -15,13 +9,18 @@ app = Flask("Emotion Detection", template_folder="../templates", static_folder="
 
 @app.route("/")
 def render_index_page():
+    """Render the main UI page."""
     return render_template("index.html")
 
 
 @app.route("/emotionDetector")
 def emotion_detector_route():
+    """Run emotion detection for query text and return formatted output."""
     text_to_analyze = request.args.get("textToAnalyze")
     result = emotion_detector(text_to_analyze)
+
+    if result["dominant_emotion"] is None:
+        return "Invalid text! Please try again!"
 
     return (
         "For the given statement, the system response is "

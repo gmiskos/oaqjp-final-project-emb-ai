@@ -1,0 +1,22 @@
+Command run:
+cd /Users/A200160346/Documents/python/oaqjp-final-project-emb-ai && /Users/A200160346/Documents/python/oaqjp-final-project-emb-ai/.venv/bin/python - <<'PY'
+from unittest.mock import patch
+from EmotionDetection import emotion_detector
+
+class MockResponse:
+    status_code = 200
+    text = '{"emotionPredictions":[{"emotion":{"anger":0.82,"disgust":0.05,"fear":0.06,"joy":0.02,"sadness":0.05}}]}'
+
+print('PACKAGE_IMPORT_OK')
+with patch('EmotionDetection.emotion_detection.requests.post', return_value=MockResponse()):
+    result = emotion_detector('I hate working long hours')
+    print('TEST_RESULT')
+    print(result)
+    print('DOMINANT_IS_ANGER', result['dominant_emotion'] == 'anger')
+PY
+
+Output:
+PACKAGE_IMPORT_OK
+TEST_RESULT
+{'anger': 0.82, 'disgust': 0.05, 'fear': 0.06, 'joy': 0.02, 'sadness': 0.05, 'dominant_emotion': 'anger'}
+DOMINANT_IS_ANGER True
