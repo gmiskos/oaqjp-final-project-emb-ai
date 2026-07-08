@@ -1,0 +1,7 @@
+Command run:
+PYTHONPATH=. /Users/A200160346/Documents/python/oaqjp-final-project-emb-ai/.venv/bin/python -m pylint final_project/server.py
+
+Output:
+
+-------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 7.78/10, +2.22)
